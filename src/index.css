@@ -1,0 +1,413 @@
+/* Colores y medidas de toda la aplicación */
+:root {
+  --fondo: #f4effb;
+  --fondo-2: #fdeef4;
+  --superficie: #ffffff;
+  --tinta: #2e2a47;
+  --tenue: #69637f;
+  --linea: #e6dff0;
+  --principal: #6553c7;
+  --foco: #6553c7;
+  --peligro: #b83a63;
+ 
+  /* Un color pastel por cada etapa del embudo: suave para el fondo, intenso para el borde */
+  --todos-suave: #ffd3e3;
+  --posible-suave: #ffdcb5;
+  --posible: #f29a4a;
+  --contactado-suave: #c7e3fd;
+  --contactado: #5a9fe0;
+  --cliente-suave: #bff0d4;
+  --cliente: #3fb57e;
+ 
+  --radio: 10px;
+ 
+  font-family: 'Instrument Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--tinta);
+  background: var(--fondo);
+}
+ 
+.titulo {
+  color: var(--principal);
+}
+ 
+* {
+  box-sizing: border-box;
+}
+ 
+body {
+  margin: 0;
+  min-height: 100vh;
+  /* Degradado suave de lavanda a rosa */
+  background: linear-gradient(160deg, var(--fondo) 0%, var(--fondo-2) 100%);
+}
+ 
+h1,
+h2,
+p {
+  margin: 0;
+}
+ 
+:focus-visible {
+  outline: 3px solid var(--foco);
+  outline-offset: 2px;
+}
+ 
+.oculto {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+ 
+.app {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2.5rem 1.25rem 4rem;
+}
+ 
+/* Cabecera */
+.cabecera {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+ 
+.titulo {
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+ 
+.subtitulo {
+  margin-top: 0.5rem;
+  color: var(--tenue);
+}
+ 
+/* Botones */
+.boton {
+  font: inherit;
+  font-weight: 600;
+  border-radius: var(--radio);
+  cursor: pointer;
+}
+ 
+.boton-principal {
+  padding: 0.65rem 1.25rem;
+  border: none;
+  background: var(--principal);
+  color: #fff;
+}
+ 
+.boton-principal:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+ 
+.boton-texto {
+  padding: 0.4rem 0.6rem;
+  border: none;
+  background: none;
+  color: var(--tinta);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+ 
+.boton-peligro {
+  color: var(--peligro);
+}
+ 
+/* Embudo: la pieza principal de la pantalla */
+.embudo {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 1.5rem;
+}
+ 
+.etapa {
+  flex: 1 1 0;
+  min-width: 6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0.9rem 1.6rem 0.9rem 1.9rem;
+  border: none;
+  font: inherit;
+  color: var(--tinta);
+  text-align: left;
+  cursor: pointer;
+  /* Forma de flecha, como las etapas de un proceso de venta */
+  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 50%, calc(100% - 14px) 100%, 0 100%, 14px 50%);
+  transition: flex-grow 0.4s ease;
+}
+ 
+.etapa-todos {
+  flex: 0 0 auto;
+  padding-left: 1.1rem;
+  background: var(--todos-suave);
+  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 50%, calc(100% - 14px) 100%, 0 100%);
+}
+ 
+.etapa-posible {
+  background: var(--posible-suave);
+}
+ 
+.etapa-contactado {
+  background: var(--contactado-suave);
+}
+ 
+.etapa-cliente {
+  background: var(--cliente-suave);
+}
+ 
+.etapa-numero {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+ 
+.etapa-nombre {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+ 
+/* Etapa seleccionada: barra de tinta en la parte inferior */
+.etapa.activa {
+  box-shadow: inset 0 -5px 0 var(--tinta);
+}
+ 
+.etapa.activa .etapa-nombre {
+  font-weight: 700;
+}
+ 
+/* El recorte en flecha taparía el contorno normal, así que se dibuja por dentro */
+.etapa:focus-visible {
+  outline-offset: -7px;
+}
+ 
+/* Búsqueda */
+.barra-busqueda {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+ 
+input,
+select,
+textarea {
+  font: inherit;
+  color: var(--tinta);
+  background: var(--superficie);
+  border: 1px solid var(--linea);
+  border-radius: var(--radio);
+  padding: 0.55rem 0.75rem;
+}
+ 
+.barra-busqueda input {
+  flex: 1;
+  min-width: 0;
+}
+ 
+.contador {
+  color: var(--tenue);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+ 
+/* Lista de clientes */
+.lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background: var(--superficie);
+  border-radius: var(--radio);
+  overflow: hidden;
+}
+ 
+.fila {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr auto;
+  gap: 1.25rem;
+  align-items: start;
+  padding: 1.1rem 1.25rem;
+  border-left: 5px solid;
+}
+ 
+.fila + .fila {
+  border-top: 1px solid var(--linea);
+}
+ 
+.fila-posible {
+  border-left-color: var(--posible);
+}
+ 
+.fila-contactado {
+  border-left-color: var(--contactado);
+}
+ 
+.fila-cliente {
+  border-left-color: var(--cliente);
+}
+ 
+.fila-nombre {
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+ 
+.fila-empresa {
+  color: var(--tenue);
+}
+ 
+.fila-notas {
+  margin-top: 0.4rem;
+  max-width: 60ch;
+}
+ 
+.fila-fecha {
+  margin-top: 0.4rem;
+  font-size: 0.85rem;
+  color: var(--tenue);
+}
+ 
+.fila-contacto {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  overflow-wrap: anywhere;
+}
+ 
+.fila-contacto a {
+  color: var(--tinta);
+  text-underline-offset: 3px;
+}
+ 
+.sin-dato {
+  color: var(--tenue);
+}
+ 
+.fila-acciones {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+ 
+/* Formulario */
+.formulario {
+  background: var(--superficie);
+  border-radius: var(--radio);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  border-top: 5px solid var(--principal);
+}
+ 
+.formulario h2 {
+  font-size: 1.35rem;
+  margin-bottom: 1rem;
+}
+ 
+.campos {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+ 
+.campos label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+ 
+.campo-ancho {
+  grid-column: 1 / -1;
+}
+ 
+.aviso-campo {
+  margin-top: 1rem;
+  color: var(--peligro);
+  font-weight: 500;
+}
+ 
+.formulario-acciones {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+ 
+/* Mensajes */
+.error,
+.aviso {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-start;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.25rem;
+  background: #ffe3ec;
+  border-left: 5px solid var(--peligro);
+  border-radius: var(--radio);
+}
+ 
+.aviso {
+  margin-top: 1.5rem;
+}
+ 
+.vacio {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding: 2rem 1.25rem;
+  background: var(--superficie);
+  border-radius: var(--radio);
+  color: var(--tenue);
+}
+ 
+/* Móvil */
+@media (max-width: 640px) {
+  .titulo {
+    font-size: 2.4rem;
+  }
+ 
+  .embudo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+ 
+  .etapa,
+  .etapa-todos {
+    clip-path: none;
+    padding: 0.75rem 1rem;
+    min-width: 0;
+  }
+ 
+  .etapa:focus-visible {
+    outline-offset: 2px;
+  }
+ 
+  .fila {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+ 
+  .campos {
+    grid-template-columns: 1fr;
+  }
+}
+ 
+@media (prefers-reduced-motion: reduce) {
+  .etapa {
+    transition: none;
+  }
+}
+ 
