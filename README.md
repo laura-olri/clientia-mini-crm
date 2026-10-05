@@ -2,8 +2,6 @@
 
 Aplicación web para hacer el seguimiento de los clientes de una pequeña empresa, desde el primer contacto hasta que se convierten en clientes.
 
-**Demo:** [enlace a Vercel cuando esté publicada]
-
 ## Funcionalidades
 
 - Alta de clientes con nombre, empresa, email, teléfono, estado y notas.
@@ -54,4 +52,4 @@ supabase/
 
 ## Autora
 
-[Laura Olmedo], técnica superior en Desarrollo de Aplicaciones Multiplataforma. Desarrollado con apoyo de asistentes de IA (Claude).
+Laura Olmedo, técnica superior en Desarrollo de Aplicaciones Multiplataforma. Desarrollado con apoyo de asistentes de IA (Claude).
